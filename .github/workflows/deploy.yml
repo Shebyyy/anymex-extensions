@@ -24,14 +24,14 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           mkdir -p public/main
-          cp -r * public/main
+          rsync -av --exclude=public ./ public/main/
           touch public/main/.nojekyll
 
       - name: Build and Deploy for Redirect Branch
         if: github.ref == 'refs/heads/redirect'
         run: |
           mkdir -p public/redirect
-          cp -r * public/redirect
+          rsync -av --exclude=public ./ public/redirect/
           touch public/redirect/.nojekyll
 
       - name: Upload GitHub Pages Artifact
