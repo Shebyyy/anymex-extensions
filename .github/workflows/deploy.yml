@@ -17,28 +17,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Create Deployment Directory
-        run: mkdir -p public
-
-      - name: Build and Deploy for Main Branch
-        if: github.ref == 'refs/heads/main'
-        run: |
-          mkdir -p public/main
-          rsync -av --exclude=public ./ public/main/
-          touch public/main/.nojekyll
-
-      - name: Build and Deploy for Redirect Branch
-        if: github.ref == 'refs/heads/redirect'
-        run: |
-          mkdir -p public/redirect
-          rsync -av --exclude=public ./ public/redirect/
-          touch public/redirect/.nojekyll
-
       - name: Upload GitHub Pages Artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: public
+          path: .
           retention-days: 1
 
   deploy-pages:
@@ -53,7 +36,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: github-pages
-          path: public
+          path: .
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
