@@ -1,0 +1,51 @@
+name: Deploy Both Branches to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - redirect
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Create Deployment Directory
+        run: mkdir -p public
+
+      - name: Build and Deploy for Main Branch
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p public/main
+          cp -r * public/main
+          touch public/main/.nojekyll
+
+      - name: Build and Deploy for Redirect Branch
+        if: github.ref == 'refs/heads/redirect'
+        run: |
+          mkdir -p public/redirect
+          cp -r * public/redirect
+          touch public/redirect/.nojekyll
+
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: public
+
+  deploy-pages:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
