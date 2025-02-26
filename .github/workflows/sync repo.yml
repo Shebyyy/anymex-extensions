@@ -29,8 +29,7 @@ jobs:
            git add javascript
            git commit -m "Automated sync: Updated javascript folder from Mangayomi" || echo "No changes to commit"
            git push origin main
-           continue-on-error: true
-           shell: bash
+           
 
       - name: Sync Dart Folder
         run: |
@@ -38,6 +37,5 @@ jobs:
           git add dart
           git commit -m "Automated sync: Updated dart folder from Mangayomi" || echo "No changes to commit"
            git push origin main
-          continue-on-error: true
-          git push origin main
+          
           
