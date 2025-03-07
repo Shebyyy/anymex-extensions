@@ -7,17 +7,17 @@ just paste them into your:
 
 manga repo 
 ```
-https://kodjodevf.github.io/mangayomi-extensions/index.json
+https://Shebyyy.github.io/anymex-extensions/index.json
 ```
 
 anime repo 
 ```
-https://kodjodevf.github.io/mangayomi-extensions/anime_index.json
+https://Shebyyy.github.io/anymex-extensions/anime_index.json
 ```
 
 novel repo 
 ```
-https://kodjodevf.github.io/mangayomi-extensions/novel_index.json
+https://Shebyyy.github.io/anymex-extensions/novel_index.json
 ```
 
 # Contributing
